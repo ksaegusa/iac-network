@@ -8,6 +8,12 @@
 
 
   tasks:
+  
+    - name: configure the remote device
+    vyos_config:
+      lines:
+        - set system host-name {{ host }}
+        
     - name: for idempotency, use full-form commands
       vyos_config:
         lines:
