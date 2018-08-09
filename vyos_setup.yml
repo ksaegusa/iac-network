@@ -17,4 +17,4 @@
     - name: for idempotency, use full-form commands
       vyos_config:
         lines:
-          set interfaces ethernet {{ set_eth }} address {{ new_ip_address }}/24
+          "set interfaces ethernet {{ set_eth }} address '{{ new_ip_address }}/24'"
