@@ -23,5 +23,5 @@
       
     - name: debug
       debug:
-      msg: "{{ configure_result.stdout }}"
+      msg: "{{ configure_result }}"
 
