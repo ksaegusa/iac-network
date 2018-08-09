@@ -19,9 +19,9 @@
       vyos_command:
         commands:
           - show configuration
-      register: configure_result
+        register: aaaaaaaaaaa
       
     - name: debug
       debug:
-      msg: "{{ configure_result }}"
+      msg: "{{ aaaaaaaaaaa }}"
 
