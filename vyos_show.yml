@@ -15,10 +15,16 @@
     #    - eth0
     #    - eth1
         
+    #- name: show configuration on ethernet devices eth0 and eth1
+    #  vyos_command:
+    #    commands:
+    #      - show configuration
+    #  register: config_result
+    
     - name: show configuration on ethernet devices eth0 and eth1
       vyos_command:
         commands:
-          - show configuration
+          - show ip route
       register: config_result
       
     - name: debug
