@@ -12,4 +12,4 @@
     - name: change static route
       vyos_config:
         lines:
-          - "{{ action_delete_delete }} protocols static route {{ routing_network }} next-hop {{ next_hop }}"
+          - "{{ action_set_delete }} protocols static route {{ routing_network }} next-hop {{ next_hop }}"
