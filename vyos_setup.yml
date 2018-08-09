@@ -1,0 +1,15 @@
+
+- hosts: all
+  connection: local
+
+  vars:
+    ansible_user: "{{ username }}"
+    ansible_password: "{{ password }}"
+
+
+  tasks:
+    - name: for idempotency, use full-form commands
+      vyos_config:
+        lines:
+          # - set int eth eth2 description 'OUTSIDE'
+          - set interface ethernet eth2 description 'OUTSIDE'
