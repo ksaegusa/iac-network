@@ -19,7 +19,7 @@
       vyos_command:
         commands:
           - show configuration
-        register: aaaaaaaaaaa
+      register: aaaaaaaaaaa
       
     - name: debug
       debug:
