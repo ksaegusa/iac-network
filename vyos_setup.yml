@@ -1,5 +1,5 @@
 - hosts: all
-  #connection: local
+  connection: local
 
   vars:
     ansible_user: "{{ username }}"
