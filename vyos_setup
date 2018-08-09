@@ -1,13 +1,13 @@
+- hosts: localhost
+  connection: local
 
 
 
-
-
-tasks:
-  - name: show configuration on ethernet devices eth0 and eth1
-    vyos_command:
-      commands:
-        - show interfaces ethernet {{ item }}
-    with_items:
-      - eth0
-      - eth1
+  tasks:
+    - name: show configuration on ethernet devices eth0 and eth1
+      vyos_command:
+        commands:
+          - show interfaces ethernet {{ item }}
+      with_items:
+        - eth0
+        - eth1
