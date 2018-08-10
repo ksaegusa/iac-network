@@ -9,7 +9,14 @@
 
   tasks:
         
-    - name: change static route
-      vyos_config:
-        lines:
-          - "set protocols static route {{ routing_network }} next-hop {{ next_hop }}"
+    #- name: change static route
+    #  vyos_config:
+    #    lines:
+    #      - "set protocols static route {{ routing_network }} next-hop {{ next_hop }}"
+         
+    - name: remove configuration
+      vyos_static_route:
+        prefix: {{ routing_network }}
+        mask: {{ mask }}
+        next_hop: {{ next_hop }}
+        state: {{ state }}
