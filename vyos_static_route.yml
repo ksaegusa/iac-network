@@ -16,7 +16,7 @@
          
     - name: remove configuration
       vyos_static_route:
-        prefix: {{ routing_network }}
-        mask: {{ mask }}
-        next_hop: {{ next_hop }}
-        state: {{ state }}
+        prefix: "{{ routing_network }}"
+        mask: "{{ mask }}"
+        next_hop: "{{ next_hop }}"
+        state: "{{ state }}"
