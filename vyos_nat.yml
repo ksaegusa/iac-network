@@ -13,12 +13,15 @@
   
     - name: configure the remote device
       vyos_config:
-        lines: set nat source rule 100 outbound-interface eth0
-        
-    - name: configure the remote device
-      vyos_config:
-        lines: set nat source rule 100 source address 192.168.0.0/24
+        lines: 
+          - set interfaces ethernet eth0 description INTERNAL
+          - set interfaces ethernet eth0 address 192.168.0.1/24
+          - set interfaces ethernet eth1 description GLOBAL
+          - set interfaces ethernet eth1 address 192.168.10.1/24
 
-    - name: configure the remote device
+    - name: configure nat
       vyos_config:
-        lines: set nat source rule 100 translation address masquerade
+        lines:
+          - set nat source rule 100 outbound-interface eth0
+          - set nat source rule 100 source address 192.168.0.0/24
+          - set nat source rule 100 translation address masquerade
