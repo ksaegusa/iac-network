@@ -14,7 +14,7 @@
     #    lines:
     #      - "set protocols static route {{ routing_network }} next-hop {{ next_hop }}"
          
-    - name: remove configuration
+    - name: route configuration
       vyos_static_route:
         prefix: "{{ routing_network }}"
         mask: "{{ mask }}"
