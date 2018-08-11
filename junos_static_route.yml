@@ -1,0 +1,17 @@
+
+
+- hosts: all
+  connection: local
+
+  vars:
+    ansible_user: "{{ username }}"
+    ansible_password: "{{ password }}"
+
+
+  tasks:
+        
+    - name: configure static route
+      junos_static_route:
+        address: "{{ routing_network }}/{{ mask }}"
+        next_hop: "{{ next_hop }}"
+        state: "{{ state }}"
