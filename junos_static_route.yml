@@ -8,13 +8,22 @@
     ansible_password: "{{ password }}"
 
   tasks:
-        
+  
     - name: configure static route
       junos_static_route:
-        address: 100.100.100.0/24
-        next_hop: 100.100.100.1
-        state: "{{ state }}"
-      
-        #address: "{{ routing_network }}/{{ mask }}"
+        address: 192.168.2.0/24
+        next_hop: 10.0.0.1
+        preference: 10
+        qualified_next_hop: 10.0.0.2
+        qualified_preference: 3
+        state: present
+            
+    #- name: configure static route
+    #  junos_static_route:
+    #    address: 100.100.100.0/24
+    #    next_hop: 100.100.100.1
+    #    state: "{{ state }}"
+    #  
+    #    #address: "{{ routing_network }}/{{ mask }}"
         #next_hop: "{{ next_hop }}"
         #state: "{{ state }}"
