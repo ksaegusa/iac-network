@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: yes
+  #connection: local
+  vars:
+   ansible_user: root
+   ansible_password: default
+
+  tasks:
+  - name: Get_VSlist
+    bigip_command:
+      commands: show ltm virtual
+      provider:
+        server: "{{ inventory_hostname }}"
+        user: root
+        password: default
+        transport: cli
+    register: result
+    delegate_to: localhost
+
+  - name: Print_VSlist
+    debug:
+       msg: "{{ result.stdout_lines }}"
