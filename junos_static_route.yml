@@ -11,6 +11,10 @@
         
     - name: configure static route
       junos_static_route:
-        address: "{{ routing_network }}/{{ mask }}"
-        next_hop: "{{ next_hop }}"
+        address: 100.100.100.0/24
+        next_hop: 100.100.100.1
         state: "{{ state }}"
+      
+        #address: "{{ routing_network }}/{{ mask }}"
+        #next_hop: "{{ next_hop }}"
+        #state: "{{ state }}"
