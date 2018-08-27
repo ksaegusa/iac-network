@@ -15,6 +15,7 @@
         commands: show version
         
     - name: configure static route
+      connection: network_cli
       junos_static_route:
         address: 192.168.2.0/24
         next_hop: 10.0.0.1
