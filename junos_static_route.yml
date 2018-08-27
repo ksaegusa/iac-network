@@ -3,12 +3,18 @@
 - hosts: all
   connection: netconf
 
-  vars:
-    ansible_user: "{{ username }}"
-    ansible_password: "{{ password }}"
+  vars: 
+    ansible_connection=network_cli
+    ansible_network_os=junos
+    ansible_user="{{ username }}"
+    ansible_ssh_pass="{{ password }}"
+    ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion01"'
 
   tasks:
-  
+    - name: Retrieve Junos OS version
+      junos_command:
+        commands: show version
+        
     - name: configure static route
       junos_static_route:
         address: 192.168.2.0/24
