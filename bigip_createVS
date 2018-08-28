@@ -1,0 +1,61 @@
+---
+- hosts: all
+  gather_facts: no
+  connection: local
+  #下記を変数にする
+  vars:
+    POOL: TEST-POOL
+    USER: root
+    PASS: default
+    VSName: TEST
+
+  tasks:
+  #プール作成
+  - name: Add New pool
+    bigip_pool:
+      provider:
+        server: "{{ inventory_hostname }}"
+        user: "{{ USER }}"
+        password: "{{ PASS }}"
+        validate_certs: no
+      state: present
+      name: "{{ POOL }}"
+      monitor_type: single
+      monitors:
+        - http
+      partition: Common
+      lb_method: round-robin
+      slow_ramp_time: 120
+
+  #VS作成
+  - name: Add virtual server
+    bigip_virtual_server:
+      provider:
+        server: "{{ inventory_hostname }}"
+        user: "{{ USER }}"
+        password: "{{ PASS }}"
+        validate_certs: no
+      state: present
+      partition: Common
+      name: "{{ VSName }}"
+      destination: 192.168.1.150
+      port: 8080
+      pool: "{{ POOL }}"
+      snat: Automap
+      description: Test Virtual Server
+      profiles:
+        - http
+
+  #VSをPoolへ追加
+  - name: Add pool member
+    bigip_pool_member:
+      provider:
+        server: "{{ inventory_hostname }}"
+        user: "{{ USER }}"
+        password: "{{ PASS }}"
+        validate_certs: no
+      state: present
+      pool: "{{ POOL }}"
+      partition: Common
+      host: 192.168.2.100
+      port: 80
