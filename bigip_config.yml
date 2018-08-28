@@ -14,7 +14,9 @@
         server: "{{ inventory_hostname }}"
         user: root
         password: default
-        transport: cli
+        transport: rest
+        validate_certs: no
+        
     register: result
     delegate_to: localhost
 
